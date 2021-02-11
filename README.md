@@ -1,13 +1,14 @@
 # Avalonia QRCode Control
 
-<center><a href="" target="_blank"><img align="center" src="resources/Icon.png" width="128"/></a></center>
+![Icon - of a qr code that points back to here](/resources/Icon.png "Icon")
 
 by [Mike James](https://twitter.com/mikecodesdotnet)
 
 
 # Using the control 
 
-<center><a href="" target="_blank"><img align="center" src="resources/sample_screenshot.png" width="600"/></a></center>
+![A sample application screenshot.](resources/sample_screenshot.png "Sample App")
+
 
 I've included a sample app to demonstrate the functionality of the control. It's a straightforward control, and thus should be self-explanatory. 
 
