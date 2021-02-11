@@ -2,6 +2,8 @@
 
 ![Icon - of a qr code that points back to here](/resources/Icon.png "Icon")
 
+[![NuGet version (QRCode.Avalonia)](https://img.shields.io/nuget/v/QRCode.Avalonia.svg?style=flat-square)](https://www.nuget.org/packages/QRCode.Avalonia/)
+
 by [Mike James](https://twitter.com/mikecodesdotnet)
 
 
