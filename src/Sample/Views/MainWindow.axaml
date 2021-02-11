@@ -1,0 +1,81 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Sample.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:qr="clr-namespace:Avalonia.QRCode;assembly=Avalonia.QRCode"
+        xmlns:converters="using:Sample.Converters"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Sample.Views.MainWindow"
+        Background="DarkGray"
+        Icon="/Assets/QRIcon.ico"
+        Title="QRCode Example">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+
+  <Window.Resources>
+    <Thickness x:Key="DefaultMargin">10,5</Thickness>
+    <converters:HexToColorConverter x:Key="HexToColorConverter"/>
+  </Window.Resources>
+
+  <Grid ColumnDefinitions="*, Auto" >
+
+    <!-- where the magic happens -->
+    <qr:QRCode Name="qrCode"
+               Grid.Column="0" 
+               Margin="50"
+               Data="{Binding Data}" 
+               Color="{Binding ColorHex, Converter={StaticResource HexToColorConverter}}" 
+               SpaceBrush="{Binding SpaceColorHex, Converter={StaticResource HexToColorConverter}}" 
+               DrawQuietZones="{Binding QuitZones}"
+               PixelsPerModule="{Binding PixelsPerModule}"
+               Icon="{Binding IconSource}"
+               IconScale="{Binding IconScale}"
+               IconBorderWidth="{Binding IconBorder}"/>
+
+    
+    <StackPanel Grid.Column="1" Spacing="10" Background="Black" Width="350">
+
+      <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+        <TextBlock Grid.Column="0" Grid.Row="0"  Text="Data" Foreground="White" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Watermark="Data" Text="{Binding Data}" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="1"  Text="Pixels Per Module" Foreground="White" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+        <NumericUpDown Grid.Column="1" Grid.Row="1" Minimum="1" Maximum="99" Value="{Binding PixelsPerModule}" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+        
+        <TextBlock Grid.Column="0" Grid.Row="2"  Text="Quiet Zones" Foreground="White" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+        <ToggleSwitch Grid.Column="1" Grid.Row="2" IsChecked="{Binding QuitZones}" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="3"  Text="Color" Foreground="White" VerticalAlignment="Center"  Margin="{DynamicResource DefaultMargin}"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Watermark="Hex Value" Text="{Binding ColorHex}" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="4"  Text="Space Brush" Foreground="White" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Watermark="Hex Value" Text="{Binding SpaceColorHex}" VerticalAlignment="Center"  Margin="{DynamicResource DefaultMargin}"/>
+
+        
+        
+        <TextBlock Grid.Column="0" Grid.Row="5"  Text="Has Icon" Foreground="White" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+        <ToggleSwitch Grid.Column="1" Grid.Row="5" 
+                      IsChecked="{Binding HasIcon}"
+                      Name="hasIcon" VerticalAlignment="Center"
+                      Margin="{DynamicResource DefaultMargin}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="6" IsVisible="{Binding #hasIcon.IsChecked}" Text="Icon Scale" Foreground="White" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+        <NumericUpDown Grid.Column="1" Grid.Row="6" IsVisible="{Binding #hasIcon.IsChecked}" Minimum="1" Maximum="99" Value="{Binding IconScale}" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="7" IsVisible="{Binding #hasIcon.IsChecked}" Text="Icon Border Width" Foreground="White" VerticalAlignment="Center"  Margin="{DynamicResource DefaultMargin}"/>
+        <NumericUpDown Grid.Column="1" Grid.Row="7" IsVisible="{Binding #hasIcon.IsChecked}"
+                       Minimum="1" Maximum="99" Value="{Binding IconBorder}" 
+                       VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+
+
+      </Grid>
+      
+    </StackPanel>
+
+
+  </Grid>  
+</Window>

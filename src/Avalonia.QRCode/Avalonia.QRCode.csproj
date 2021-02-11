@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>QRCode.Avalonia</PackageId>
+    <Title>Avalonia QRCode Control</Title>
+    <Version>1.0.0</Version>
+    <Authors>Mike James</Authors>
+    <Company>Mike James</Company>
+    <Description>A QRCore control for Avalonia. Powered by QRCoder</Description>
+    <Copyright>Copyright © Mike James 2021</Copyright>
+    <PackageProjectUrl>https://github.com/MikeCodesDotNET/Avalonia-QRCode</PackageProjectUrl>
+    <PackageTags>qrcode;barcode;controls;avalonia</PackageTags>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  
+  <ItemGroup>    
+      <None Include="images\Icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+  
+  
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.0" />
+    <PackageReference Include="QRCoder" Version="1.4.1" />
+    
+  </ItemGroup>
+
+</Project>
