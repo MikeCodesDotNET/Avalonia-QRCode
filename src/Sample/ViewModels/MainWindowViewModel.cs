@@ -4,6 +4,8 @@ using Avalonia.Platform;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Avalonia.Markup.Xaml.Converters;
+using Avalonia.Media;
 
 namespace Sample.ViewModels
 {
@@ -40,24 +42,16 @@ namespace Sample.ViewModels
             set => this.RaiseAndSetIfChanged(ref quitZones, value);
         }
 
-        public string ColorHex
+        public Color Color
         {
-            get => colorHex;
-            set
-            {
-                if(value.Length >= 6)
-                    this.RaiseAndSetIfChanged(ref colorHex, value); 
-            }
+            get => color;
+            set => this.RaiseAndSetIfChanged(ref color, value);
         }
-
-        public string SpaceColorHex
+        
+        public Color SpaceColor
         {
-            get => spaceColorHex;
-            set
-            {
-                if (value.Length >= 6)
-                    this.RaiseAndSetIfChanged(ref spaceColorHex, value);
-            }
+            get => spaceColor;
+            set => this.RaiseAndSetIfChanged(ref spaceColor, value);
         }
 
         public Bitmap IconSource
@@ -91,15 +85,15 @@ namespace Sample.ViewModels
         private string data;
         private int pixelsPerModule;
         private bool quitZones;
-        private string colorHex = "#010101";
-        private string spaceColorHex;
 
         private bool hasIcon;
         private Bitmap iconSource;
         private int iconScale;
         private int iconBorder;
+        private Color color = Colors.Black;
+        private Color spaceColor = Colors.White;
 
-        
+
 
     }
 }

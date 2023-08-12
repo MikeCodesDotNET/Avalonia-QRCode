@@ -9,5 +9,6 @@
 
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="avares://Avalonia.Controls.ColorPicker/Themes/Fluent/Fluent.xaml"></StyleInclude>
     </Application.Styles>
 </Application>
