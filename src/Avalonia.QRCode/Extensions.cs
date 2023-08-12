@@ -65,7 +65,7 @@ namespace Avalonia.QRCode
         /// </summary>
         /// <param name="bitmap"></param>
         /// <returns></returns>
-        public static System.Drawing.Bitmap FromNative(this Avalonia.Media.Imaging.IBitmap bitmap)
+        public static System.Drawing.Bitmap FromNative(this Avalonia.Media.Imaging.Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())
             {

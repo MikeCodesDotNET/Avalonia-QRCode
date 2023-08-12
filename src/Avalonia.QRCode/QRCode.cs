@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using QRCoder;
@@ -20,7 +21,7 @@ namespace Avalonia.QRCode
 
 
 
-        public static readonly StyledProperty<IBitmap> IconProperty = AvaloniaProperty.Register<QRCode, IBitmap>(nameof(Icon), null);
+        public static readonly StyledProperty<Bitmap> IconProperty = AvaloniaProperty.Register<QRCode, Bitmap>(nameof(Icon));
 
         public static readonly StyledProperty<int> IconScaleProperty = AvaloniaProperty.Register<QRCode, int>(nameof(IconScale), 15);
 
@@ -62,7 +63,7 @@ namespace Avalonia.QRCode
         /// <summary>
         /// If null, then ignored. If set, the Bitmap is drawn in the middle of the QR Code
         /// </summary>
-        public IBitmap Icon
+        public Bitmap Icon
         {
             get { return GetValue(IconProperty); }
             set 
@@ -163,9 +164,7 @@ namespace Avalonia.QRCode
                 Rect sourceRect = new Rect(sourceSize)
                     .CenterRect(new Rect(destRect.Size / scale));
 
-                var interpolationMode = RenderOptions.GetBitmapInterpolationMode(this);
-
-                context.DrawImage(source, sourceRect, destRect, interpolationMode);
+                context.DrawImage(source, sourceRect, destRect);
             }
         }
 

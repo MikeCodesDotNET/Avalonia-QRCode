@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,10 +9,6 @@ namespace Sample.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        IAssetLoader assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
-
-
-       
         public bool HasIcon
         {
             get => hasIcon;
@@ -21,7 +16,7 @@ namespace Sample.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref hasIcon, value);
                 if (value)
-                    IconSource = new Bitmap(assets.Open(new Uri("avares://Sample/Assets/bit.png")));
+                    IconSource = new Bitmap(AssetLoader.Open(new Uri("avares://Sample/Assets/bit.png")));
                 else
                     IconSource = null;
             }
@@ -65,7 +60,7 @@ namespace Sample.ViewModels
             }
         }
 
-        public IBitmap IconSource
+        public Bitmap IconSource
         {
             get => iconSource;
             set => this.RaiseAndSetIfChanged(ref iconSource, value);
@@ -96,11 +91,11 @@ namespace Sample.ViewModels
         private string data;
         private int pixelsPerModule;
         private bool quitZones;
-        private string colorHex;
+        private string colorHex = "#010101";
         private string spaceColorHex;
 
         private bool hasIcon;
-        private IBitmap iconSource;
+        private Bitmap iconSource;
         private int iconScale;
         private int iconBorder;
 

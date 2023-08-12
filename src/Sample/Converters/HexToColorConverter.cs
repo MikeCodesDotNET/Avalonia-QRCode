@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Globalization;
 using Avalonia.QRCode;
 using Avalonia.Media;
+using Brushes = Avalonia.Media.Brushes;
 
 namespace Sample.Converters
 {
@@ -43,7 +44,7 @@ namespace Sample.Converters
 
             }
 
-            throw new NotSupportedException();
+            return Brushes.Transparent;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
