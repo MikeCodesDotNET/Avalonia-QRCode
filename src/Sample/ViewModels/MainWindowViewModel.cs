@@ -1,19 +1,16 @@
 using Avalonia;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Avalonia.Markup.Xaml.Converters;
+using Avalonia.Media;
 
 namespace Sample.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        IAssetLoader assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
-
-
-       
         public bool HasIcon
         {
             get => hasIcon;
@@ -21,7 +18,7 @@ namespace Sample.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref hasIcon, value);
                 if (value)
-                    IconSource = new Bitmap(assets.Open(new Uri("avares://Sample/Assets/bit.png")));
+                    IconSource = new Bitmap(AssetLoader.Open(new Uri("avares://Sample/Assets/bit.png")));
                 else
                     IconSource = null;
             }
@@ -45,27 +42,19 @@ namespace Sample.ViewModels
             set => this.RaiseAndSetIfChanged(ref quitZones, value);
         }
 
-        public string ColorHex
+        public Color Color
         {
-            get => colorHex;
-            set
-            {
-                if(value.Length >= 6)
-                    this.RaiseAndSetIfChanged(ref colorHex, value); 
-            }
+            get => color;
+            set => this.RaiseAndSetIfChanged(ref color, value);
+        }
+        
+        public Color SpaceColor
+        {
+            get => spaceColor;
+            set => this.RaiseAndSetIfChanged(ref spaceColor, value);
         }
 
-        public string SpaceColorHex
-        {
-            get => spaceColorHex;
-            set
-            {
-                if (value.Length >= 6)
-                    this.RaiseAndSetIfChanged(ref spaceColorHex, value);
-            }
-        }
-
-        public IBitmap IconSource
+        public Bitmap IconSource
         {
             get => iconSource;
             set => this.RaiseAndSetIfChanged(ref iconSource, value);
@@ -96,15 +85,15 @@ namespace Sample.ViewModels
         private string data;
         private int pixelsPerModule;
         private bool quitZones;
-        private string colorHex;
-        private string spaceColorHex;
 
         private bool hasIcon;
-        private IBitmap iconSource;
+        private Bitmap iconSource;
         private int iconScale;
         private int iconBorder;
+        private Color color = Colors.Black;
+        private Color spaceColor = Colors.White;
 
-        
+
 
     }
 }

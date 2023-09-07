@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:qr="clr-namespace:Avalonia.QRCode;assembly=Avalonia.QRCode"
-        xmlns:converters="using:Sample.Converters"
+        xmlns:converters="clr-namespace:Avalonia.Markup.Xaml.Converters;assembly=Avalonia.Markup.Xaml"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Sample.Views.MainWindow"
         Background="DarkGray"
@@ -18,7 +18,8 @@
 
   <Window.Resources>
     <Thickness x:Key="DefaultMargin">10,5</Thickness>
-    <converters:HexToColorConverter x:Key="HexToColorConverter"/>
+
+    <converters:ColorToBrushConverter x:Key="BrushConverter"/>
   </Window.Resources>
 
   <Grid ColumnDefinitions="*, Auto" >
@@ -28,8 +29,8 @@
                Grid.Column="0" 
                Margin="50"
                Data="{Binding Data}" 
-               Color="{Binding ColorHex, Converter={StaticResource HexToColorConverter}}" 
-               SpaceBrush="{Binding SpaceColorHex, Converter={StaticResource HexToColorConverter}}" 
+               Color="{Binding Color, Converter={StaticResource BrushConverter}}" 
+               SpaceBrush="{Binding SpaceColor, Converter={StaticResource BrushConverter}}" 
                DrawQuietZones="{Binding QuitZones}"
                PixelsPerModule="{Binding PixelsPerModule}"
                Icon="{Binding IconSource}"
@@ -50,10 +51,10 @@
         <ToggleSwitch Grid.Column="1" Grid.Row="2" IsChecked="{Binding QuitZones}" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
 
         <TextBlock Grid.Column="0" Grid.Row="3"  Text="Color" Foreground="White" VerticalAlignment="Center"  Margin="{DynamicResource DefaultMargin}"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Watermark="Hex Value" Text="{Binding ColorHex}" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
+        <ColorPicker Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left"  Color="{Binding Color}" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
 
         <TextBlock Grid.Column="0" Grid.Row="4"  Text="Space Brush" Foreground="White" VerticalAlignment="Center" Margin="{DynamicResource DefaultMargin}"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Watermark="Hex Value" Text="{Binding SpaceColorHex}" VerticalAlignment="Center"  Margin="{DynamicResource DefaultMargin}"/>
+        <ColorPicker Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Color="{Binding SpaceColor}" VerticalAlignment="Center"  Margin="{DynamicResource DefaultMargin}"/>
 
         
         

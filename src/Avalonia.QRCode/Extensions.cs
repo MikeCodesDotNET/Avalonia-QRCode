@@ -16,12 +16,12 @@ namespace Avalonia.QRCode
         {            
             var scb = brush as ISolidColorBrush;            
             var c = scb.Color;
-            return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");      
+            return "#" + c.A.ToString("X2")+ c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");      
         }
 
         public static string ToHex(this Media.Color c)
         {
-            return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+            return "#" + c.A.ToString("X2") + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
         }
 
 
@@ -65,7 +65,7 @@ namespace Avalonia.QRCode
         /// </summary>
         /// <param name="bitmap"></param>
         /// <returns></returns>
-        public static System.Drawing.Bitmap FromNative(this Avalonia.Media.Imaging.IBitmap bitmap)
+        public static System.Drawing.Bitmap FromNative(this Avalonia.Media.Imaging.Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())
             {
